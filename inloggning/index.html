@@ -8,13 +8,30 @@
 	<style>
 		
 		.jumb{
-			width: 50%;
-			margin-left: 25%;
-			margin-right: 25%;
-			margin-top: 300px;
+			width: 25%%;
+			margin-left: 37%;
+			margin-right: 37%;
+			margin-top: 150px;
+			
+		}
+		label{
+			
+			margin-right: 110px;
+			margin-left: 20px;
 			
 		}
 		
+		input{
+			
+			margin-right: 40px;
+			margin-left: 20px;
+		}
+		
+		a{
+			
+			margin-left: 370px
+			
+		}
 		
 	</style>
 		
@@ -25,9 +42,16 @@
 		
 	<div class="jumb">
 		<div class="jumbotron jumbotron-fluid">
-		  <hr class="my-4">
-	    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></div>
-			</div>
+			<form method="post" action="index.html">
+				<label for="username">Användarnamn</label>
+				<label for="password">Lösenord</label><br>
+				<input type="text" name="username" id="username" maxlength="12" minlength="2" required>
+				<input type="password" name="password" id="password" minlength="6" required>
+				<hr class="my-4">	
+	    		<a class="btn btn-primary btn-lg"  role="button" type="submit">Logga in</a>
+			</form>
+		</div>
+	</div>
 	</body>
 
 </html>
