@@ -3,8 +3,9 @@ session_start();
 require('db_connect.php');
 
 if(!isset($_SESSION['user'])){
+	echo 'test';
 	header('Location: ../inloggning/index.php?action=nosession');
-}
+} 
 ?>
 
 <!doctype html>
@@ -55,12 +56,12 @@ if(!isset($_SESSION['user'])){
     				</tr>
   				</thead>
   				<tbody>
-    				<tr>
+    				<tr v-for="student in students">
       				
-      					<td>Bäron</td>
-      					<td>Bär</td>
-      					<td>300</td>
-						<td>Ett Finländskt bär från Antarktis</td>
+      					<td>{{ student.produkt }}</td>
+						<td>{{ student.antal }}</td>
+						<td>{{ student.kategori }}</td>
+						<td>{{ student.beskrivning }}</td>
 						<td><a class="btn btn-outline-warning"  role="button" href="#">Uppdatera</a></td>
 						<td><a class="btn btn-outline-danger"   role="button" href="#">Radera</a></td>
     				</tr>
@@ -72,6 +73,8 @@ if(!isset($_SESSION['user'])){
 		
 	</div>
 	
-	
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
