@@ -1,7 +1,10 @@
 <?php 
+session_start();
+require('db_connect.php');
 
-require('db_connect.php')
-
+if(!isset($_SESSION['user'])){
+	header('Location: ../inloggning/index.php?action=nosession');
+}
 ?>
 
 <!doctype html>
@@ -42,20 +45,22 @@ require('db_connect.php')
 			<table class="table">
   				<thead>
     				<tr>
-      					<th scope="col col-md-2">#</th>
+      					
       					<th scope="col col-md-2">Produkt</th>
       					<th scope="col col-md-2">Katerogi</th>
       					<th scope="col col-md-2">Antal st</th>
+						<th scope="col col-md-2">Beskrivning</th>
 						<th scope="col col-md-2">Uppdatera</th>
 						<th scope="col col-md-2">Radera</th>
     				</tr>
   				</thead>
   				<tbody>
     				<tr>
-      					<th scope="row">1</th>
+      				
       					<td>Bäron</td>
       					<td>Bär</td>
       					<td>300</td>
+						<td>Ett Finländskt bär från Antarktis</td>
 						<td><a class="btn btn-outline-warning"  role="button" href="#">Uppdatera</a></td>
 						<td><a class="btn btn-outline-danger"   role="button" href="#">Radera</a></td>
     				</tr>

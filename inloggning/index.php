@@ -1,7 +1,56 @@
 <?php 
+session_start();
 
-require('db_connect.php')
+require('db_connect.php');
 
+if(isset($_GET['action'])){
+	
+	$action = $_GET['action'];
+	
+
+
+//om inte inloggad
+if($action == "nosession"){
+	
+	$output="Var snäll och logga in";
+	
+}
+if($action=="logout"){
+	
+	$output="Tack för besöket";
+	unset($_SESSION['user']);
+}
+
+
+}
+if(isset($_POST) && !empty($_POST)){
+	
+	$sql="SELECT * FROM users WHERE UserName=:user_email AND Password=:user_password LIMIT 1";
+	
+	$row= [
+	
+	':user_email' => $_POST['username'],
+	':user_password' => md5($_POST["password"])	
+	];
+	
+	$res=$conn->prepare($sql);
+	$res->execute($row);
+	if($res->fetchColumn() <1){
+		
+		$output="fel användarnamn eller lösenord";
+		
+	}else{
+		
+		//$output="rätt användarnamn och lösenord";
+		
+		$_SESSION['user']=1;
+		
+		header("location: ../produkt-sida/index.php");
+		
+	}
+}
+
+//echo $output;
 ?>
 
 <!doctype html>
@@ -32,7 +81,7 @@ require('db_connect.php')
 			margin-left: 20px;
 		}
 		
-		a{
+		button{
 			
 			margin-left: 370px
 			
@@ -60,8 +109,8 @@ require('db_connect.php')
 		
 	<div class="jumb">
 		<div class="jumbotron jumbotron-fluid">
-			<form method="post" action="#">
-				
+			<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+				<?php if (isset($output)){echo "<h3 class='alert alert-warning'>".$output."</h3>";} ?>	
 				<h2>Inlogning</h2>
 				<div class="row">
 					<div class="col col-md-6">
@@ -75,7 +124,7 @@ require('db_connect.php')
 				</div>
 				</div>
 				<hr class="my-4">	
-	    		<a class="btn btn-primary btn-lg"  role="button" type="submit">Logga in</a>
+	    		<button class="btn btn-primary btn-lg"  role="button" type="submit">Logga in</button>
 				<p>Fruit-Stop</p>
 			</form>
 		</div>
