@@ -1,20 +1,52 @@
 <?php 
 
-//require('db_connect.php')
+require('db_connect.php')
 
 ?>
 
 <!doctype html>
 <html>
 	<head>
+	<title>Fruit-Stop</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	
 	<style>
 		
 		.jumb{
-			width: 50%;
-			margin-left: 25%;
-			margin-right: 25%;
+			
+			margin-left: 37%;
+			width: 500px;
+			margin-top: 150px;
+			
+		}
+		label{
+			
+			margin-right: 110px;
+			margin-left: 20px;
+			
+		}
+		
+		input{
+			
+			margin-right: 40px;
+			margin-left: 20px;
+		}
+		
+		a{
+			
+			margin-left: 370px
+			
+		}
+		
+		p{
+			
+			float: right;
+			
+		}
+		
+		.form-control{
+			
+			width: 200px;
 			
 		}
 		
@@ -28,9 +60,26 @@
 		
 	<div class="jumb">
 		<div class="jumbotron jumbotron-fluid">
-		  <hr class="my-4">
-	    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></div>
-			</div>
+			<form method="post" action="#">
+				
+				<h2>Inlogning</h2>
+				<div class="row">
+					<div class="col col-md-6">
+				<label for="username">Användarnamn</label>				
+				<input class="form-control" type="text" name="username" id="username" maxlength="12" minlength="2" required>
+				</div>
+					
+					<div class="col col-md-6">
+				<label for="password">Lösenord</label><br>
+				<input class="form-control" type="password" name="password" id="password" minlength="6" maxlength="22" required>
+				</div>
+				</div>
+				<hr class="my-4">	
+	    		<a class="btn btn-primary btn-lg"  role="button" type="submit">Logga in</a>
+				<p>Fruit-Stop</p>
+			</form>
+		</div>
+	</div>
 	</body>
 
 </html>
