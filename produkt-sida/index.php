@@ -5,7 +5,24 @@ require('db_connect.php');
 if(!isset($_SESSION['user'])){
 	echo 'test';
 	header('Location: ../inloggning/index.php?action=nosession');
-} 
+} else if(isset($_GET['delete'])){
+	 
+	 $sql="DELETE FROM produkter WHERE id=:id";
+	 $row=[ ':id'=>$_GET['delete'] ];
+	 
+	 $res=$conn->prepare($sql)->execute($row);
+	 
+	 if($res){
+		 
+		 $output="produkten är borttagen";
+		 
+	 }else{
+		 
+		 $output="Någonting gick fel";
+		 
+	 }
+	 
+ }
 ?>
 
 <!doctype html>
@@ -36,12 +53,25 @@ if(!isset($_SESSION['user'])){
 
 <body>
 	
-	<div class="box">
+	<div class="box" id="app">
 		
 		
 		<div class="jumbotron jumbotron-fluid">
 			<h1 class="center">Produkter</h1>
 			<hr class="my-4">
+			
+			<?php if (isset($output)){echo "<h3 class='alert alert-warning'>".$output."</h3>";} ?>
+			
+			<a class="btn btn-outline-primary" @click="allRecords()"  class="hi">Välj alla produkter</a>
+			
+			<input type="text" list="randlist" name="randlist" v-model="kategori" >
+				<datalist id="randlist">
+				<option value="Bär">
+				<option value="Frukt">
+				<option value="Grönsak">
+				</datalist>
+			<a class="btn btn-outline-primary" @click="recordByKategori()">Välj kategori</a>
+			<a class="btn btn-outline-success"  role="button" href="insert.php">Lägg till</a>
 			
 			<table class="table">
   				<thead>
@@ -49,7 +79,7 @@ if(!isset($_SESSION['user'])){
       					
       					<th scope="col col-md-2">Produkt</th>
       					<th scope="col col-md-2">Katerogi</th>
-      					<th scope="col col-md-2">Antal st</th>
+      					<th scope="col col-md-2">Antal</th>
 						<th scope="col col-md-2">Beskrivning</th>
 						<th scope="col col-md-2">Uppdatera</th>
 						<th scope="col col-md-2">Radera</th>
@@ -59,11 +89,11 @@ if(!isset($_SESSION['user'])){
     				<tr v-for="student in students">
       				
       					<td>{{ student.produkt }}</td>
-						<td>{{ student.antal }}</td>
 						<td>{{ student.kategori }}</td>
+						<td>{{ student.antal }}</td>
 						<td>{{ student.beskrivning }}</td>
-						<td><a class="btn btn-outline-warning"  role="button" href="#">Uppdatera</a></td>
-						<td><a class="btn btn-outline-danger"   role="button" href="#">Radera</a></td>
+						<td><a class="btn btn-outline-warning"  role="button" v-bind:href="'Update.php?id=' + student.id">Uppdatera</a></td>
+						<td><a class="btn btn-outline-danger"   role="button" v-bind:href="'<?php echo $_SERVER['PHP_SELF']. "?delete=" ?>' + student.id">Radera</a></td>
     				</tr>
     
  				</tbody>

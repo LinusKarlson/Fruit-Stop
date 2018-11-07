@@ -2,7 +2,7 @@ var app = new Vue({
   el: '#app',
   data: {
     students: "",
-    id: 0
+	kategori: ""
   },
   methods: {
     allRecords: function(){
@@ -15,12 +15,13 @@ var app = new Vue({
          console.log(error);
       });
     },
-    recordByID: function(){
-      if(this.id > 0){
+    recordByKategori: function(){
+		console.log(this.kategori);
+      if(this.kategori != ''){
 
         axios.get('ajax.php', {
            params: {
-             id: this.id
+             kategori: this.kategori
            }
         })
         .then(function (response) {
