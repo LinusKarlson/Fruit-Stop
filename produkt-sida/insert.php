@@ -41,7 +41,7 @@ if(isset($_POST)&& !empty($_POST)){
 	
 }else{
 	
-	$output="var snäll och välj en kategori som existerar! alternativen är Frukt   Grönsak   Bär";
+	$output="var snäll och välj en kategori som existerar!";
 	
 	
 }
