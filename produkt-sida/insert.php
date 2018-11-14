@@ -44,8 +44,8 @@ if(isset($_POST)&& !empty($_POST)){
 	}
 	
 	
-}
-if($antal>0){
+}else
+{
 	
 	$output="var snäll och välj en kategori som existerar!";
 	
@@ -82,7 +82,11 @@ if($antal>0){
 	margin-left:148px;
 	
 }
-
+.form-control{
+		display: inline;
+		width: 110px;
+		
+	}
 
 </style>
 </head>
@@ -98,7 +102,11 @@ if($antal>0){
 
 <label class="to-the-right">Produkt</label><label>Kategori</label><br>
 <input type="text" name="FirstName" required>
-<input type="text" name="BirthYear" required><br>
+<select class="form-control" name="BirthYear">
+			<option>Bär</option>
+			<option>Frukt</option>
+			<option>Grönsak</option>
+			</select>			<br>
 
 
 <label>Antal</label><label class="to-the-left">Beskrivning</label><br>

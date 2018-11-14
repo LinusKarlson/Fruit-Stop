@@ -97,10 +97,14 @@ if(isset($_GET['id'])){
 	margin-left:148px;
 	
 }
+.form-control{
+		display: inline;
+		width: 110px;
+		
 </style>
 <title>php-mysql insert</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -116,7 +120,11 @@ if(isset($_GET['id'])){
 
 		<label class="to-the-right">Produkt</label><label>Kategori</label><br>
 		<input type="text" name="FirstName" value="<?php echo $student['produkt'] ?>" required>
-		<input type="text"  name="BirthYear" value="<?php echo $student['kategori'] ?>" required><br>
+		<select class="form-control" name="BirthYear">
+			<option>Bär</option>
+			<option>Frukt</option>
+			<option>Grönsak</option>
+			</select>			<br>
 		
 		
 		<label>Antal</label><label class="to-the-left">Beskrivning</label><br>
