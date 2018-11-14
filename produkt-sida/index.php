@@ -64,12 +64,10 @@ if(!isset($_SESSION['user'])){
 			
 			<a class="btn btn-outline-primary" @click="allRecords()"  class="hi">Välj alla produkter</a>
 			
-			<input type="text" list="randlist" name="randlist" v-model="kategori" >
-				<datalist id="randlist">
-				<option value="Bär">
-				<option value="Frukt">
-				<option value="Grönsak">
-				</datalist>
+			<input type="radio" name="gender" value="Bär" v-model="kategori" >Bär
+			<input type="radio" name="gender" value="Frukt" v-model="kategori" >Frukt
+			<input type="radio" name="gender" value="Grönsak" v-model="kategori" >Grönsak
+				
 			<a class="btn btn-outline-primary" @click="recordByKategori()">Välj kategori</a>
 			<a class="btn btn-outline-success"  role="button" href="insert.php">Lägg till</a>
 			
