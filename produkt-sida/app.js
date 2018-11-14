@@ -3,7 +3,7 @@ var app = new Vue({
   data: {
     students: "",
 	kategori: "",
-	//produkt: ""
+	produkt: ""
   },
   methods: {
     allRecords: function(){
@@ -32,7 +32,7 @@ var app = new Vue({
            console.log(error);
         });
       }
-    }/*,
+    },
 	recordByProdukt: function(){
 		console.log(this.produkt);
 		console.log("fff");
@@ -52,6 +52,6 @@ var app = new Vue({
         });
       }
 		
-	}*/
+	}
   }
 })
