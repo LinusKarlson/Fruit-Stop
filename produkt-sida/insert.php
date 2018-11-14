@@ -1,7 +1,12 @@
 <?php
+session_start();
+require('db_connect.php');
 
-require("db_connect.php");
-
+if(!isset($_SESSION['user'])){
+	echo 'test';
+	header('Location: ../inloggning/index.php?action=nosession');
+}
+$antal="";
 if(isset($_POST)&& !empty($_POST)){
 	
 	
@@ -39,7 +44,8 @@ if(isset($_POST)&& !empty($_POST)){
 	}
 	
 	
-}else{
+}
+if($antal>0){
 	
 	$output="var snäll och välj en kategori som existerar!";
 	
@@ -58,23 +64,51 @@ if(isset($_POST)&& !empty($_POST)){
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <title>php-mysql insert</title>
 <meta charset="utf-8">
+<style>
+.box{
+		
+		margin-left: 34%;
+		margin-right: 34%;
+		margin-top: 100px;
+		
+	}
+.to-the-right{
+	margin-right:128px;
+	
+}
 
+.to-the-left{
+	
+	margin-left:148px;
+	
+}
+
+
+</style>
 </head>
 
 <body>
-<?php if(!empty($output)){ echo "<h3>".$output."<h3>";}?>
-<h1>Lägg till en ny elev</h1>
 
+<div class="jumbotron box">
+<?php if (isset($output)){echo "<h3 class='alert alert-warning'>".$output."</h3>";} ?>
+
+<h1>Lägg till en ny produkt</h1>
+<hr class="my-4">
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 
-<p><label>Produkt</label><br><input type="text" name="FirstName"></p>
-<p><label>Kategori</label><br><input type="text" name="BirthYear"></p>
-<p><label>Antal</label><br><input type="text" name="LastName"></p>
-<p><label>Beskrivning</label><br><input type="text" name="beskrivning"></p>
+<label class="to-the-right">Produkt</label><label>Kategori</label><br>
+<input type="text" name="FirstName" required>
+<input type="text" name="BirthYear" required><br>
 
 
-<button type="submit">lägg till produkt</button>
+<label>Antal</label><label class="to-the-left">Beskrivning</label><br>
+<input type="text" name="LastName" required>
+<input type="text" name="beskrivning"><br><br>
 
+
+<button class="btn btn-outline-success" type="submit">lägg till produkt</button>
+<a class="btn btn-outline-danger" href="index.php">Tillbaka</a>
+</div>
 </form>
 
 </body>

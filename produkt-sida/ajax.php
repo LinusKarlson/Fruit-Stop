@@ -8,7 +8,14 @@ if(isset($_GET['kategori']) && !empty($_GET['kategori'])){
     $stmt = $conn->prepare($q_select);
     $stmt->execute([':id' => $id]);
  
-} else {
+}else if(isset($_GET['produkt']) && !empty($_GET['produkt'])){
+	$id = $_GET['produkt'];
+	$q_select = "SELECT produkter.id,produkt,kategori.kategori,antal,beskrivning FROM produkter INNER JOIN kategori ON produkter.kategori=kategori.id WHERE produkt.produkt=:id";
+    $stmt = $conn->prepare($q_select);
+    $stmt->execute([':id' => $id]);
+	
+	
+}else {
   $q_select = "SELECT produkter.id,produkt,kategori.kategori,antal,beskrivning FROM produkter INNER JOIN kategori ON produkter.kategori=kategori.id ";
   $stmt = $conn->query($q_select);
   $stmt->execute();

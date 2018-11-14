@@ -2,7 +2,8 @@ var app = new Vue({
   el: '#app',
   data: {
     students: "",
-	kategori: ""
+	kategori: "",
+	//produkt: ""
   },
   methods: {
     allRecords: function(){
@@ -16,7 +17,7 @@ var app = new Vue({
       });
     },
     recordByKategori: function(){
-		console.log(this.kategori);
+	
       if(this.kategori != ''){
 
         axios.get('ajax.php', {
@@ -31,6 +32,26 @@ var app = new Vue({
            console.log(error);
         });
       }
-    }
+    }/*,
+	recordByProdukt: function(){
+		console.log(this.produkt);
+		console.log("fff");
+		
+		if(this.produkt != ''){
+
+        axios.get('ajax.php', {
+           params: {
+             produkt: this.produkt
+           }
+        })
+        .then(function (response) {
+           app.students = response.data;
+        })
+        .catch(function (error) {
+           console.log(error);
+        });
+      }
+		
+	}*/
   }
 })

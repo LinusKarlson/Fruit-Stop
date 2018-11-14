@@ -1,6 +1,12 @@
 <?php
+session_start();
+require('db_connect.php');
 
-require("db_connect.php");
+if(!isset($_SESSION['user'])){
+	echo 'test';
+	header('Location: ../inloggning/index.php?action=nosession');
+}
+
 $antal="";
 if(isset($_POST)&& !empty($_POST)){
 	
@@ -74,11 +80,23 @@ if(isset($_GET['id'])){
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <style>
-*{
-	margin-left:10px;
+.box{
+		
+		margin-left: 34%;
+		margin-right: 34%;
+		margin-top: 100px;
+		
+	}
+.to-the-right{
+	margin-right:128px;
 	
 }
 
+.to-the-left{
+	
+	margin-left:148px;
+	
+}
 </style>
 <title>php-mysql insert</title>
 <meta charset="utf-8">
@@ -86,25 +104,29 @@ if(isset($_GET['id'])){
 </head>
 
 <body>
-<?php if (isset($output)){echo "<h3 class='alert alert-warning'>".$output."</h3>";} ?>
-<h1>Uppdatera produkten</h1>
+<div class="jumbotron box">
 
-<form method="post" action="<?php echo $_SERVER["PHP_SELF"]."?id=".$student['id']; ?>">
-<input type="hidden" name="id" value="<?php echo $student['id']; ?>" >
-<p><label>Produkt</label><br><input type="text" name="FirstName" value="<?php echo $student['produkt'] ?>"></p>
-<p><label>Kategori</label><br><input type="text" list="randlist" name="BirthYear" value="<?php echo $student['kategori'] ?>"></p>
-<datalist id="randlist">
-				<option value="Bär">
-				<option value="Frukt">
-				<option value="Grönsak">
-				</datalist>
-<p><label>Antal</label><br><input type="text" name="LastName" value="<?php echo $student['antal'] ?>"></p>
-<p><label>Beskrivning</label><br><input type="text" name="beskrivning" value="<?php echo $student['beskrivning'] ?>"></p>
+	<?php if (isset($output)){echo "<h3 class='alert alert-warning'>".$output."</h3>";} ?>
+	<h1>Uppdatera produkten</h1>
+	<hr class="my-4">
+	<form method="post" action="<?php echo $_SERVER["PHP_SELF"]."?id=".$student['id']; ?>">
 
-<button type="submit">Uppdatera produkt </button>
-<a href="index.php">Tillbaka</a>
-</form>
+		<input type="hidden" name="id" value="<?php echo $student['id']; ?>" >
 
+
+		<label class="to-the-right">Produkt</label><label>Kategori</label><br>
+		<input type="text" name="FirstName" value="<?php echo $student['produkt'] ?>" required>
+		<input type="text"  name="BirthYear" value="<?php echo $student['kategori'] ?>" required><br>
+		
+		
+		<label>Antal</label><label class="to-the-left">Beskrivning</label><br>
+		<input type="text" name="LastName" value="<?php echo $student['antal'] ?>" required>
+		<input type="text" name="beskrivning" value="<?php echo $student['beskrivning'] ?>"><br><br>
+
+		<button class="btn btn-outline-success" type="submit">Uppdatera produkt </button>
+		<a class="btn btn-outline-danger" href="index.php">Tillbaka</a>
+	</form>
+</div>
 </body>
 
 

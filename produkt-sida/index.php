@@ -47,6 +47,23 @@ if(!isset($_SESSION['user'])){
 		text-align: center;
 		
 	}
+	.form-control{
+		display: inline;
+		width: 110px;
+		
+	}
+	
+	.menu{
+	
+	margin-right:40px;
+	
+	}
+	
+	.inte{
+		
+		width: 110px;
+		
+	}
 	
 </style>
 </head>
@@ -62,13 +79,23 @@ if(!isset($_SESSION['user'])){
 			
 			<?php if (isset($output)){echo "<h3 class='alert alert-warning'>".$output."</h3>";} ?>
 			
-			<a class="btn btn-outline-primary" @click="allRecords()"  class="hi">Välj alla produkter</a>
 			
-			<input type="radio" name="gender" value="Bär" v-model="kategori" >Bär
-			<input type="radio" name="gender" value="Frukt" v-model="kategori" >Frukt
-			<input type="radio" name="gender" value="Grönsak" v-model="kategori" >Grönsak
-				
-			<a class="btn btn-outline-primary" @click="recordByKategori()">Välj kategori</a>
+			<a class="btn btn-outline-primary menu" @click="allRecords()"  class="hi">Välj alla produkter</a>
+			
+			
+			<select class="form-control" v-model="kategori">
+			<option>Bär</option>
+			<option>Frukt</option>
+			<option>Grönsak</option>
+			</select>			
+			<a class="btn btn-outline-primary menu" @click="recordByKategori()">Välj kategori</a>
+			
+			
+			
+			<input class="inte" type="text"  disabled>	<!--	v-model="produkt"  @click="recordByProdukt()"!-->
+			<a class="btn btn-outline-primary menu" >sök produkt</a>
+			
+			
 			<a class="btn btn-outline-success"  role="button" href="insert.php">Lägg till</a>
 			
 			<table class="table">
